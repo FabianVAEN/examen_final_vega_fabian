@@ -45,7 +45,7 @@ frontend/
     └── App.jsx                # Componente principal
 ```
 
-## 📊 Modelo de Datos
+## Modelo de Datos
 
 ### Tabla: tasks
 
