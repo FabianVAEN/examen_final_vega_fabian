@@ -120,8 +120,7 @@ class TaskService {
         };
       }
 
-      // REGLA OBLIGATORIA: Validar DONE con description
-      // Usar la nueva description si se proporciona, sino la existente
+      // Regla para DOnNE: Usar la nueva description si se proporciona, sino la existente
       const finalDescription = taskData.description !== undefined 
         ? taskData.description 
         : existingTask.description;

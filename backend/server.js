@@ -16,61 +16,33 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/tasks', taskRoutes);
 
 // Ruta de health check
-app.get('/health', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Tasks API funcionando correctamente',
-    timestamp: new Date().toISOString()
-  });
+app.get('/health', (req, res) => {res.status(200).json({success: true, message: 'Tasks API funcionando correctamente',timestamp: new Date().toISOString()});
 });
 
 // Ruta principal
-app.get('/', (req, res) => {
-  res.json({
-    message: 'API de Gestión de Tareas',
-    version: '1.0.0',
-    endpoints: {
-      tasks: '/api/tasks',
-      health: '/health'
-    }
+app.get('/', (req, res) => {res.json({message: 'API de Gestión de Tareas', version: '1.0.0', endpoints: { tasks: '/api/tasks', health: '/health'}
   });
 });
 
 // Manejo de rutas no encontradas
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: `Ruta no encontrada: ${req.method} ${req.path}`
-  });
+app.use((req, res) => { res.status(404).json({ success: false, message: `Ruta no encontrada: ${req.method} ${req.path}` });
 });
 
 // Manejo de errores global
-app.use((err, req, res, next) => {
-  console.error('Error:', err.stack);
-  res.status(500).json({
-    success: false,
-    message: 'Error interno del servidor',
-    error: process.env.NODE_ENV === 'development' ? err.message : undefined
-  });
+app.use((err, req, res, next) => { console.error('Error:', err.stack); res.status(500).json({ success: false, message: 'Error interno del servidor',
+error: process.env.NODE_ENV === 'development' ? err.message : undefined});
 });
 
 // Iniciar servidor
 const startServer = async () => {
-  try {
-    console.log('Iniciando servidor...');
-    
+  try {console.log('Iniciando servidor...');
     await testConnection();
     await syncDatabase();
     
     app.listen(PORT, () => {
-      console.log('');
-      console.log('═══════════════════════════════════════════════');
-      console.log('API DE TAREAS CORRIENDO');
-      console.log('═══════════════════════════════════════════════');
       console.log(`URL: http://localhost:${PORT}`);
       console.log(`API: http://localhost:${PORT}/api/tasks`);
       console.log(`Health: http://localhost:${PORT}/health`);
-      console.log('═══════════════════════════════════════════════');
       console.log('');
     });
   } catch (error) {

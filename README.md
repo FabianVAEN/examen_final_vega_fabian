@@ -2,23 +2,24 @@
 
 Sistema completo CRUD para administrar tareas con backend Node.js/Express/PostgreSQL y frontend React/Tailwind.
 
-## 🎯 Funcionalidades
+## Funcionalidades
 
-- ✅ **Crear tareas** con título, descripción y estado
-- ✏️ **Editar tareas** existentes
-- 🗑️ **Eliminar tareas** con confirmación
-- 📋 **Listar tareas** con filtros por estado
-- ⚠️ **Validación especial**: No se puede marcar como DONE si la descripción tiene menos de 10 caracteres
-- 🎨 **Componentes reutilizables**: Button (usado 3+ veces) e Input (usado 2+ veces)
-- 💬 **Mostrar errores** del backend en pantalla
+- **Crear tareas** con título, descripción y estado
+- **Editar tareas** existentes
+- **Eliminar tareas** con confirmación
+- **Listar tareas** con filtros por estado
+- **Validación especial**: No se puede marcar como DONE si la descripción tiene menos de 10 caracteres
+- **Componentes reutilizables**: Button (usado 3+ veces) e Input (usado 2+ veces)
+- **Mostrar errores** del backend en pantalla
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ### Backend
 ```
 backend/
-├── models/           # Modelo Task (Sequelize)
+├── 
 ├── repositories/     # Acceso a datos
+│    └──  models/      # Modelo Task (Sequelize)
 ├── services/         # Lógica de negocio + validaciones
 ├── routes/           # Endpoints REST
 ├── database.js       # Configuración Sequelize
@@ -31,8 +32,8 @@ backend/
 frontend/
 └── src/
     ├── components/
-    │   ├── Button.jsx         # ✅ Componente reutilizable (usado 6 veces)
-    │   ├── Input.jsx          # ✅ Componente reutilizable (usado 2 veces)
+    │   ├── Button.jsx         # Componente reutilizable
+    │   ├── Input.jsx          # Componente reutilizable 
     │   ├── TaskForm.jsx       # Formulario crear/editar
     │   ├── TaskCard.jsx       # Tarjeta de task
     │   ├── TaskList.jsx       # Lista de tasks
@@ -61,18 +62,18 @@ frontend/
 - Para cambiar status a `DONE`, la descripción debe tener al menos 10 caracteres
 - El backend responde con `400` y `{ "message": "..." }` si se viola la regla
 
-## 🚀 Instalación y Uso
+## Instalación y Uso
 
 ### Prerrequisitos
 - Docker y Docker Compose instalados
-- Node.js 18+ (solo si NO usas Docker)
+- Node.js 18+ 
 
-### Opción 1: Con Docker (Recomendado)
+### Con Docker 
 
 ```bash
 # 1. Clonar el repositorio
 git clone <tu-repo>
-cd tasks-app
+cd examen:final_vega_fabian
 
 # 2. Levantar PostgreSQL + Backend
 docker-compose up -d
@@ -132,7 +133,7 @@ npm install
 npm run dev
 ```
 
-## 📡 Endpoints de la API
+## Endpoints de la API
 
 Base URL: `http://localhost:4000/api/tasks`
 
@@ -185,38 +186,26 @@ curl -X PUT http://localhost:4000/api/tasks/1 \
   }'
 ```
 
-## ✅ Verificación de Requisitos
+## Verificación de Requisitos
 
-### Componentes Reutilizables
 
-#### Button (usado 6 veces)
-1. ✅ TaskForm - Botón "Crear Task"
-2. ✅ TaskForm - Botón "Actualizar Task"
-3. ✅ TaskForm - Botón "Limpiar/Cancelar"
-4. ✅ TaskCard - Botón "Editar"
-5. ✅ TaskCard - Botón "Eliminar"
-6. ✅ Modal - Botones "Cancelar" y "Confirmar"
-
-#### Input (usado 2 veces)
-1. ✅ TaskForm - Input de título
-2. ✅ TaskForm - Input de descripción (textarea)
 
 ### Reglas de Validación
 
-✅ **Título**: Mínimo 3 caracteres (validado en backend y frontend)
-✅ **Status**: Solo acepta PENDING, IN_PROGRESS, DONE
-✅ **Regla DONE**: No se permite DONE si description < 10 caracteres
-✅ **Errores 400**: Retorna `{ "message": "..." }` en validaciones
-✅ **Errores 404**: Retorna `{ "message": "Task not found" }` cuando no existe
+**Título**: Mínimo 3 caracteres (validado en backend y frontend)
+**Status**: Solo acepta PENDING, IN_PROGRESS, DONE
+**Regla DONE**: No se permite DONE si description < 10 caracteres
+**Errores 400**: Retorna `{ "message": "..." }` en validaciones
+**Errores 404**: Retorna `{ "message": "Task not found" }` cuando no existe
 
 ### Errores Mostrados en Pantalla
 
-✅ El componente `ErrorAlert` muestra errores del backend
-✅ Aparece en la esquina superior derecha
-✅ Se cierra automáticamente después de 5 segundos
-✅ Muestra el mensaje exacto del backend
+El componente `ErrorAlert` muestra errores del backend
+Aparece en la esquina superior derecha
+Se cierra automáticamente después de 5 segundos
+Muestra el mensaje exacto del backend
 
-## 🧪 Probar el CRUD
+## Probar el CRUD
 
 ### 1. Crear una task PENDING
 
@@ -226,7 +215,7 @@ Frontend: Llenar formulario
 - Descripción: (dejar vacío)
 - Status: PENDING
 
-Resultado: ✅ Se crea correctamente
+Resultado: Se crea correctamente
 ```
 
 ### 2. Intentar cambiar a DONE sin descripción
@@ -258,7 +247,7 @@ Modal: Confirmar eliminación
 Resultado: ✅ Se elimina con mensaje de éxito
 ```
 
-## 🔧 Comandos Útiles
+## Comandos Útiles
 
 ### Docker
 
@@ -293,7 +282,7 @@ npm run dev   # Modo desarrollo
 npm run build # Build para producción
 ```
 
-## 🐛 Solución de Problemas
+## Solución de Problemas
 
 ### Backend no conecta con PostgreSQL
 
@@ -321,7 +310,7 @@ docker-compose restart postgres
 # Cambiar puerto en vite.config.js (frontend)
 ```
 
-## 📝 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 tasks-app/
@@ -343,8 +332,8 @@ tasks-app/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Button.jsx          # ✅ Reutilizable
-│   │   │   ├── Input.jsx           # ✅ Reutilizable
+│   │   │   ├── Button.jsx          # Reutilizable
+│   │   │   ├── Input.jsx           # Reutilizable
 │   │   │   ├── TaskForm.jsx
 │   │   │   ├── TaskCard.jsx
 │   │   │   ├── TaskList.jsx
@@ -365,7 +354,7 @@ tasks-app/
 └── README.md
 ```
 
-## 📚 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 ### Backend
 - Node.js 18
@@ -380,25 +369,9 @@ tasks-app/
 - Tailwind CSS 3
 - Axios
 
-## 🎓 Conceptos Implementados
-
-### Backend
-✅ Arquitectura en capas (Repository/Service/Routes)
-✅ Validaciones en múltiples niveles
-✅ Manejo de errores consistente
-✅ Códigos HTTP correctos (200, 201, 400, 404, 500)
-
-### Frontend
-✅ Componentes reutilizables
-✅ Manejo de estado con hooks
-✅ Consumo de API REST
-✅ Validación en formularios
-✅ Feedback visual (loading, errores, éxitos)
 
 ## 📄 Licencia
 
 Este proyecto es de código abierto.
 
 ---
-
-**Proyecto creado como entrega de evaluación técnica** ✨

@@ -1,13 +1,7 @@
--- ================================================================
--- SCRIPT DE INICIALIZACIÓN - TASKS DATABASE
--- ================================================================
-
 -- Limpiar si existe
 DROP TABLE IF EXISTS tasks CASCADE;
 
--- ================================================================
--- CREAR TABLA TASKS
--- ================================================================
+
 CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL CHECK (LENGTH(title) >= 3),
@@ -24,12 +18,10 @@ COMMENT ON COLUMN tasks.title IS 'Título de la tarea (mínimo 3 caracteres)';
 COMMENT ON COLUMN tasks.description IS 'Descripción detallada de la tarea (opcional)';
 COMMENT ON COLUMN tasks.status IS 'Estado: PENDING, IN_PROGRESS, DONE';
 
--- ================================================================
--- INSERTAR DATOS DE EJEMPLO
--- ================================================================
+-- Datos de ejemplo
 INSERT INTO tasks (title, description, status, "createdAt", "updatedAt") VALUES
 -- Tasks PENDING
-('Configurar proyecto React', 'Instalar dependencias, configurar Tailwind CSS y estructura de componentes', 'PENDING', NOW(), NOW()),
+('Configurar proyecto con React', 'Instalar dependencias, configurar Tailwind CSS y estructura de componentes', 'PENDING', NOW(), NOW()),
 ('Revisar documentación de Sequelize', 'Leer sobre validaciones y relaciones en Sequelize ORM', 'PENDING', NOW(), NOW()),
 ('Preparar presentación del proyecto', 'Crear slides explicando arquitectura y funcionalidades implementadas', 'PENDING', NOW(), NOW()),
 
@@ -44,15 +36,11 @@ INSERT INTO tasks (title, description, status, "createdAt", "updatedAt") VALUES
 ('Diseñar arquitectura en capas', 'Separar código en repositories, services y routes según mejores prácticas', 'DONE', NOW(), NOW()),
 ('Agregar validaciones en backend', 'Implementar validaciones de datos en services y modelos de Sequelize', 'DONE', NOW(), NOW());
 
--- ================================================================
--- CREAR ÍNDICES
--- ================================================================
+
 CREATE INDEX idx_tasks_status ON tasks(status);
 CREATE INDEX idx_tasks_created_at ON tasks("createdAt");
 
--- ================================================================
--- FUNCIÓN PARA ACTUALIZAR updatedAt AUTOMÁTICAMENTE
--- ================================================================
+
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -66,8 +54,6 @@ CREATE TRIGGER update_tasks_updated_at
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
--- ================================================================
--- VERIFICACIÓN
--- ================================================================
+
 SELECT COUNT(*) as total_tasks FROM tasks;
-SELECT '✅ Base de datos de Tasks inicializada correctamente' AS status;
+SELECT ' Base de datos de Tasks inicializada correctamente' AS status;

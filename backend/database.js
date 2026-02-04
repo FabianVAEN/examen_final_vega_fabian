@@ -27,10 +27,10 @@ const sequelize = new Sequelize(
 const testConnection = async () => {
   try {
     await sequelize.authenticate();
-    console.log('✅ Conexión a PostgreSQL establecida');
-    console.log(`📊 Base de datos: ${process.env.DB_NAME || 'tasks_database'}`);
+    console.log('Conexión a PostgreSQL establecida');
+    console.log(`Base de datos: ${process.env.DB_NAME || 'tasks_database'}`);
   } catch (error) {
-    console.error('❌ Error al conectar con PostgreSQL:', error.message);
+    console.error('Error al conectar con PostgreSQL:', error.message);
     process.exit(1);
   }
 };
@@ -41,7 +41,7 @@ const syncDatabase = async () => {
     await sequelize.sync({ alter: true });
     console.log('✅ Modelos sincronizados con la base de datos');
   } catch (error) {
-    console.error('❌ Error al sincronizar modelos:', error.message);
+    console.error('Error al sincronizar modelos:', error.message);
   }
 };
 

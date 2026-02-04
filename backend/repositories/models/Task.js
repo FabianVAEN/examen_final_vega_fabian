@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../../database');
 
-// Modelo de Task
+
 const Task = sequelize.define('Task', {
   id: {
     type: DataTypes.INTEGER,
